@@ -1,39 +1,52 @@
 Feature: Testing Articles
 
-Background: Define url
- Given url 'https://conduit-api.bondaracademy.com/api/'
-Scenario: Create a new article
- Given path 'users/login'
- * def payload = 
-        """
-          {
-        "user": {
-            "email": "jean123@test.com", 
-            "password": "jean123"
+    Background: Define url
+        Given url apiURL
 
-        }
-        }
-         """
-And request payload
-When method POST
-Then status 200
-* def token = response.user.token
+                @TC_001_CREATE_ARTICLE 
+                Scenario: Create a new article
+                Given path 'articles'
+                * def articleBody = 
+                    """
+                    {
+                    "article": {
+                        "title": "test_0012", "description": "test_0011", "body": "desc article 00116", "tagList": ["test"]
+                        },
+                    "body": "desc tes0011"
+                    }
+                    """
+                And request articleBody
+                When method POST
+                Then status 201
+                * print token
+                And match response.article.title == 'test_0012'
 
+
+
+@TC_002_DELETE_ARTICLE 
+Scenario: Create and delete an article
 Given path 'articles'
-And header Authorization = 'Bearer '+ token
-* def articleBody = 
-    """
-     {
-    "article": {
-        "title": "test_006", "description": "test_article 6", "body": "desc article test 6", "tagList": ["test"]
-        },
-    "body": "desc article test 6"
-    }
-    """
- And request articleBody
- When method POST
- Then status 201
- And match response.article.title == 'test_006'
+And request { "article": {"title": "Test Delete Article", "description": "test_article 6", "body": "desc article test 6", "tagList": ["test"]},"body": "desc article test 6"}
+When method POST
+Then status 201
+* def articleSlug = response.article.slug
+* print articleSlug
 
+Given params { limit: 10, offset:0 }
+And path 'articles'
+When method GET
+Then status 200
+And match response.articles[0].title == 'Test Delete Article'
+
+
+Given path 'articles', articleSlug
+When method DELETE
+Then status 204
+
+Given params { limit:10, offset:0 }
+And path 'articles'
+When method GET
+Then status 200
+And match response.articles[0].title != 'Test Delete Article'
 
 
