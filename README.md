@@ -30,3 +30,16 @@
 ### Running tests by tags and environment:
 
     mvn test -Dkarate.options="--tags @tagName" -Dkarate.env="environmentName"
+
+
+### Data Generator with Faker 
+    * Insert dependency in POM.xml
+
+    <dependency>
+    <groupId>com.github.javafaker</groupId>
+    <artifactId>javafaker</artifactId>
+    <version>1.0.2</version>
+    </dependency>		
+
+    * Create and Import data generator file to a feture:
+      Java.type('helpers.data.DataGenerator')
