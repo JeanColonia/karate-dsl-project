@@ -20,6 +20,7 @@ Feature: Testing Articles
                 Then status 201
                 * print token
                 And match response.article.title == 'test_0012'
+                And match response.article.author.bio == '##string'
 
 
 
