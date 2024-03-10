@@ -1,4 +1,4 @@
-@ignore
+
 Feature: Sign up - register
 
 Background: preconditions to register user
@@ -7,10 +7,14 @@ Background: preconditions to register user
 @register
 Scenario: user registration
         Given path 'users'
-        * def registrationPayload = { "email": "jose1@gmail.com", "password": "jose12", "username":"jose5"} 
+        * def dataGenerator = Java.type('helpers.data.DataGenerator')
+        * def randomEmail = dataGenerator.getRandomEmail()
+        * def randomUsername = dataGenerator.getRandomUsername()
+
+
         And request 
         """
-         { "user": { "email": "#(registrationPayload.email)", "password": "#(registrationPayload.password)", "username":"#(registrationPayload.username)"} }
+         { "user": { "email": "#(randomEmail)", "password": "user123", "username":"#(randomUsername)"} }
         """
         When method POST
         Then status 201
