@@ -6,20 +6,16 @@ Feature: Testing Articles
                 @TC_001_CREATE_ARTICLE 
                 Scenario: Create a new article
                 Given path 'articles'
-                * def articleBody = 
-                    """
-                    {
-                    "article": {
-                        "title": "test_0012", "description": "test_0011", "body": "desc article 00116", "tagList": ["test"]
-                        },
-                    "body": "desc tes0011"
-                    }
-                    """
+                * def dataGenerator = Java.type('helpers.data.DataGenerator')
+                * def articleBody = read('classpath:conduitApp/json/schemas/request/article.json')
+                * set articleBody.article.title = dataGenerator.getRandomArticle().title
+                * set articleBody.article.description = dataGenerator.getRandomArticle().description
+                * set articleBody.article.body = dataGenerator.getRandomArticle().body
+
                 And request articleBody
                 When method POST
                 Then status 201
-                * print token
-                And match response.article.title == 'test_0012'
+                And match response.article.title == articleBody.article.title
                 And match response.article.author.bio == '##string'
 
 
