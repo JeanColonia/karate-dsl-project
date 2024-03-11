@@ -49,4 +49,12 @@
 ### Docker File configs and run:
 
 #### Build docker file:
-      docker build -t karatetest . 
+     *  docker build -t karatest . 
+
+     * docker run -it karatest
+
+
+### Docker-compose config
+
+#### Build docker-compose
+    * docker-compose up --build
