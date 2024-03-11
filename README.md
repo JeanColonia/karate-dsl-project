@@ -1,10 +1,11 @@
 # karate-dsl-project
 ##### Description:
 ###### What is Karate API?
-        Karate is an open-source unified test automation platform combining API testing, API performance testing, API mocks & UI testing. Karate customers typically save 80% time when writing tests for a single endpoint, use 60% less code, and tests execute faster and integrate seamlessly into existing infrastructure.
+    Karate is an open-source unified test automation platform combining API testing, API performance testing, API mocks & UI testing. Karate customers typically save 80% time when writing tests for a single endpoint, use 60% less code, and tests execute faster and integrate seamlessly into existing infrastructure.
 
 ###### Advantages:
-        One of the reasons why Karate is most preferred API testing framework is that it works well even for teams that are not comfortable with Java. With Karate, one does not have to compile the code. Instead, one merely has to write tests in a syntax that is readable and simple.
+One of the reasons why Karate is most preferred API testing framework is that it works well even for teams that are not comfortable with Java. With Karate, one does not have to compile the code. Instead, one merely has to write tests in a syntax that is readable and simple.
+
         
 ### Starting project
     mvn archetype:generate \
