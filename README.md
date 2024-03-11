@@ -43,3 +43,10 @@
 
     * Create and Import data generator file to a feture:
       Java.type('helpers.data.DataGenerator')
+
+
+
+### Docker File configs and run:
+
+#### Build docker file:
+      docker build -t karatetest . 
